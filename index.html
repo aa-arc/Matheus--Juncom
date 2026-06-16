@@ -26,8 +26,10 @@
         .card { 
             background: var(--card-bg); 
             width: 90%; 
-            max-width: 380px; 
-            padding: 40px 25px; 
+            /* Reduzi a largura máxima e ajustei o box-sizing para dar o aspecto 'Slim' da Dayse */
+            max-width: 350px; 
+            padding: 40px 30px; 
+            box-sizing: border-box;
             border-radius: 40px; 
             text-align: center; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.15);
@@ -45,16 +47,14 @@
             margin-bottom: 20px; 
         }
         
+        /* Ajustado para ficar igual ao da Dayse (sem o fundo preenchido da caixinha) */
         .status-badge { 
             display: inline-flex; 
             align-items: center; 
             gap: 8px; 
-            background: #e0f4f4; 
-            color: var(--petroleo); 
-            padding: 8px 18px; 
-            border-radius: 50px; 
+            color: var(--ardosia); 
             font-size: 0.85rem; 
-            font-weight: 600; 
+            font-weight: 500; 
             margin-bottom: 25px; 
         }
         
@@ -78,6 +78,7 @@
         
         .btn-group { display: flex; flex-direction: column; gap: 14px; width: 100%; }
         
+        /* Botões preservando seu código original, apenas com flex para centralizar o ícone */
         .btn { 
             width: 100%; 
             padding: 16px; 
@@ -88,8 +89,11 @@
             color: var(--petroleo); 
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
             box-sizing: border-box; 
-            text-align: center; 
             background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* Espaço entre o ícone e o texto */
         }
 
         .btn.solid { 
@@ -111,6 +115,15 @@
             background: transparent;
             color: var(--petroleo);
         }
+
+        .footer-credit {
+            margin-top: 35px; 
+            font-size: 0.7rem; 
+            color: var(--ardosia); 
+            opacity: 0.5; 
+            letter-spacing: 0.15em; 
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
@@ -120,7 +133,7 @@
         
         <div class="status-badge" id="statusBox">
             <div class="pulse" id="pulseDot"></div>
-            <span id="statusText">Atendimento: 09h às 20h</span>
+            <span id="statusText">Disponível para agendamento</span>
         </div>
 
         <h1>Matheus Juncom</h1>
@@ -128,22 +141,40 @@
         <div class="crp">CRP: 06/214498</div>
 
         <div class="btn-group">
-            <a href="https://wa.me/5511953838483" class="btn solid">WhatsApp</a>
-            <a href="https://www.instagram.com/juncom.psi/" class="btn">Instagram</a>
-            <a href="https://aa-arc.github.io/Matheus-Juncom/" class="btn">Acessar Site</a>
+            <a href="https://wa.me/5511953838483" class="btn solid">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a5.47 5.47 0 0 1-2.765-.758l-.198-.118-2.054.538 2.115-2.062-.128-.204a5.52 5.52 0 0 1-.856-2.915c0-3.033 2.467-5.5 5.5-5.5 1.468 0 2.85.572 3.887 1.611A5.47 5.47 0 0 1 18 12.032c0 3.033-2.467 5.5-5.5 5.5z"/></svg>
+                WhatsApp
+            </a>
+            <a href="https://www.instagram.com/juncom.psi/" class="btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                Instagram
+            </a>
+            <a href="https://aa-arc.github.io/Matheus-Juncom/" class="btn">
+                Acessar Site
+            </a>
         </div>
+
+        <div class="footer-credit">design & code by aa.arc</div>
     </div>
 
     <script>
         function checkStatus() {
             const now = new Date();
             const hour = now.getHours();
-            const statusBox = document.getElementById('statusBox');
+            const pulseDot = document.getElementById('pulseDot');
+            const statusText = document.getElementById('statusText');
             
             if (hour >= 9 && hour < 20) {
-                statusBox.style.display = "inline-flex";
+                // Aberto
+                pulseDot.className = "pulse";
+                pulseDot.style.background = "var(--verde-status)";
+                statusText.innerText = "Disponível para agendamento";
             } else {
-                statusBox.style.display = "none";
+                // Fechado
+                pulseDot.className = "";
+                pulseDot.style.background = "#b0b0b0"; // Bolinha cinza quando fechado
+                pulseDot.style.boxShadow = "none";
+                statusText.innerText = "Atendimento fechado no momento";
             }
         }
         checkStatus();
