@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matheus Juncom | Cartão Digital</title>
+    <style>
+        :root {
+            --bg-body: #d2d1cc;
+            --card-bg: #f9f9f9;
+            --petroleo: #3a4f65;
+            --ardosia: #7b8c9c;
+            --verde-status: #7ed98b;
+        }
+
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background-color: var(--bg-body); 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+        }
+
+        .card { 
+            background: var(--card-bg); 
+            width: 90%; 
+            max-width: 380px; 
+            padding: 40px 25px; 
+            border-radius: 40px; 
+            text-align: center; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img { 
+            width: 130px; 
+            height: 130px; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 4px solid var(--ardosia); 
+            margin-bottom: 20px; 
+        }
+        
+        .status-badge { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+            background: #e0f4f4; 
+            color: var(--petroleo); 
+            padding: 8px 18px; 
+            border-radius: 50px; /* Bem arredondado */
+            font-size: 0.85rem; 
+            font-weight: 600; 
+            margin-bottom: 25px; 
+        }
+        
+        .pulse { 
+            width: 10px; 
+            height: 10px; 
+            background: var(--verde-status); 
+            border-radius: 50%; 
+            animation: pulse-green 2s infinite; 
+        }
+        
+        @keyframes pulse-green { 
+            0% { box-shadow: 0 0 0 0 rgba(126, 217, 139, 0.7); } 
+            70% { box-shadow: 0 0 0 8px rgba(126, 217, 139, 0); } 
+            100% { box-shadow: 0 0 0 0 rgba(126, 217, 139, 0); } 
+        }
+
+        h1 { color: var(--petroleo); margin: 0 0 5px 0; font-size: 1.6rem; }
+        .role { color: var(--ardosia); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; }
+        .crp { color: #5f5d59; font-size: 0.8rem; margin-bottom: 30px; }
+        
+        .btn-group { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+        
+        /* Botões harmonizados */
+        .btn { 
+            width: 100%; 
+            padding: 16px; 
+            border-radius: 50px; /* Borda bem arredondada (pill shape) */
+            text-decoration: none; 
+            font-weight: 600; 
+            border: 2px solid var(--petroleo); 
+            color: var(--petroleo); 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            box-sizing: border-box; 
+            text-align: center; 
+            background: transparent;
+        }
+
+        .btn.solid { 
+            background: var(--petroleo); 
+            color: white; 
+        }
+
+        /* Efeito ao passar o mouse */
+        .btn:hover { 
+            transform: scale(1.03); /* Zoom suave */
+            cursor: pointer;
+        }
+        
+        .btn:not(.solid):hover {
+            background: var(--petroleo);
+            color: white;
+        }
+
+        .btn.solid:hover {
+            background: transparent;
+            color: var(--petroleo);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <img src="perfil.jpeg" alt="Matheus Juncom" class="profile-img">
+        
+        <div class="status-badge" id="statusBox">
+            <div class="pulse" id="pulseDot"></div>
+            <span id="statusText">Atendimento: 09h às 20h</span>
+        </div>
+
+        <h1>Matheus Juncom</h1>
+        <div class="role">Psicólogo Clínico</div>
+        <div class="crp">CRP: 06/214498</div>
+
+        <div class="btn-group">
+            <a href="https://wa.me/5511953838483" class="btn solid">WhatsApp</a>
+            <a href="https://www.instagram.com/juncom.psi/" class="btn">Instagram</a>
+            <a href="https://aa-arc.github.io/Matheus-Juncom/" class="btn">Acessar Site</a>
+        </div>
+    </div>
+
+    <script>
+        function checkStatus() {
+            const now = new Date();
+            const hour = now.getHours();
+            const statusBox = document.getElementById('statusBox');
+            
+            // Verifica horário (09:00 até 20:00)
+            if (hour >= 9 && hour < 20) {
+                statusBox.style.display = "inline-flex";
+            } else {
+                statusBox.style.display = "none";
+            }
+        }
+        checkStatus();
+    </script>
+</body>
+</html>
