@@ -52,7 +52,7 @@
             background: #e0f4f4; 
             color: var(--petroleo); 
             padding: 8px 18px; 
-            border-radius: 50px; /* Bem arredondado */
+            border-radius: 50px; 
             font-size: 0.85rem; 
             font-weight: 600; 
             margin-bottom: 25px; 
@@ -78,11 +78,10 @@
         
         .btn-group { display: flex; flex-direction: column; gap: 14px; width: 100%; }
         
-        /* Botões harmonizados */
         .btn { 
             width: 100%; 
             padding: 16px; 
-            border-radius: 50px; /* Borda bem arredondada (pill shape) */
+            border-radius: 50px; 
             text-decoration: none; 
             font-weight: 600; 
             border: 2px solid var(--petroleo); 
@@ -98,9 +97,8 @@
             color: white; 
         }
 
-        /* Efeito ao passar o mouse */
         .btn:hover { 
-            transform: scale(1.03); /* Zoom suave */
+            transform: scale(1.03); 
             cursor: pointer;
         }
         
@@ -126,7 +124,7 @@
         </div>
 
         <h1>Matheus Juncom</h1>
-        <div class="role">Psicólogo Clínico</div>
+        <div class="role">Psicólogo</div>
         <div class="crp">CRP: 06/214498</div>
 
         <div class="btn-group">
@@ -142,7 +140,6 @@
             const hour = now.getHours();
             const statusBox = document.getElementById('statusBox');
             
-            // Verifica horário (09:00 até 20:00)
             if (hour >= 9 && hour < 20) {
                 statusBox.style.display = "inline-flex";
             } else {
